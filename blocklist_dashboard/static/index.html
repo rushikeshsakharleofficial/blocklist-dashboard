@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><body>
+<h2>Blocklist Dashboard</h2>
+<input id="ip" placeholder="IP"><button onclick="send()">Add</button>
+<pre id="out"></pre>
+<script>
+let ws=new WebSocket("ws://localhost:8000/ws");
+ws.onmessage=e=>{document.getElementById('out').textContent+=e.data+"\n"}
+function send(){ws.send(JSON.stringify({ip:document.getElementById('ip').value}))}
+</script>
+</body></html>
